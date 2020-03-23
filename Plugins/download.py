@@ -8,9 +8,9 @@ def render_file_name(file):
     file_name = " ".join(file[:-1])
     len_file = len(file_name)
     if len_file >= 15:
-        return file_name[:16] + "..."
+        return file_name[:12] + "..."
     else:
-        return file_name + " "*(24 - len_file) + "..."
+        return file_name + " "*(12 - len_file)*3 + "..."
 
 
 @Client.on_message(Filters.me & Filters.command(['download'], ['.', '/']))
