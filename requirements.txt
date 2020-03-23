@@ -1,0 +1,16 @@
+beautifulsoup4==4.8.2
+certifi==2019.11.28
+chardet==3.0.4
+dnspython==1.16.0
+google-search-client==0.1
+idna==2.9
+lxml==4.5.0
+pyaes==1.6.1
+pymongo==3.10.1
+Pyrogram==0.16.0
+PySocks==1.7.0
+requests==2.23.0
+soupsieve==2.0
+TgCrypto==1.2.0
+urllib3==1.25.8
+virtualenv==20.0.10
