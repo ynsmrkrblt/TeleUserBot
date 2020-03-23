@@ -10,7 +10,7 @@ def render_file_name(file):
     if len_file >= 15:
         return file_name[:16] + "..."
     else:
-        return file_name + " "*(16 - len_file) + "..."
+        return file_name + " "*(24 - len_file) + "..."
 
 
 @Client.on_message(Filters.me & Filters.command(['download'], ['.', '/']))
@@ -132,7 +132,7 @@ def download_list(app, message):
     downloads = ""
     num = 1
     for i in listdir("./Downloads/"):
-        downloads += f"📂 [{num}] {render_file_name(i)}  -   {int(stat('./Downloads/' + i).st_size / (1024 * 1024))} MB\n"
+        downloads += f"📂 [{num}] {render_file_name(i)}            -      {int(stat('./Downloads/' + i).st_size / (1024 * 1024))} MB\n"
         num += 1
     message.edit("Download list:\n\n<u>            File names            </u>        <u>      Size      .</u>\n"
                  + downloads, parse_mode='HTML') if num != 1 else message.edit('You has not a file')
