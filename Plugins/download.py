@@ -1,5 +1,5 @@
 from pyrogram import Client, Filters
-from os import listdir, remove, stat
+from os import listdir, remove
 from time import sleep, time
 
 
