@@ -3,16 +3,6 @@ from os import listdir, remove, stat
 from time import sleep, time
 
 
-def render_file_name(file):
-    file = file.split('.')
-    file_name = " ".join(file[:-1])
-    len_file = len(file_name)
-    if len_file >= 15:
-        return file_name[:12] + "..."
-    else:
-        return file_name + " "*(12 - len_file)*3 + "..."
-
-
 @Client.on_message(Filters.me & Filters.command(['download'], ['.', '/']))
 def download(app, message):
     sleep(0.2)
@@ -132,7 +122,7 @@ def download_list(app, message):
     downloads = ""
     num = 1
     for i in listdir("./Downloads/"):
-        downloads += f"📂 [{num}] {render_file_name(i)}            -      {int(stat('./Downloads/' + i).st_size / (1024 * 1024))} MB\n"
+        downloads += f"📂 [{num}] {i}\n"
         num += 1
-    message.edit("Download list:\n\n<u>            File names            </u>        <u>      Size      .</u>\n"
+    message.edit("Download list:\n\n<u>                File names                   </u>.        \n"
                  + downloads, parse_mode='HTML') if num != 1 else message.edit('You has not a file')
