@@ -2,7 +2,7 @@ from pyrogram import Client, Filters
 from time import sleep, time
 
 
-@Client.on_message(Filters.me & Filters.command(['userlist'], ['.', '/']))
+@Client.on_message(Filters.me & Filters.command(['adminlist'], ['.', '/']))
 def user_list(app, message):
     sleep(0.2)
     chat_type = message.chat.type
@@ -10,16 +10,17 @@ def user_list(app, message):
         creator = ""
         admins = ""
         for i in app.get_chat_members(message.chat.id, filter="administrators"):
-            if i.status == "creator":
-                creator += "👑 -> @{}\n\n".format(i.user.username) if i.user.username \
-                    else "👑 -> [{}](tg://user?id={})\n\n".format(
-                        i.user.first_name, i.user.id
-                    )
-            if i.status == "administrator":
-                admins += " ⛑ -> @{}\n".format(i.user.username) if i.user.username \
-                    else " ⛑ -> [{}](tg://user?id={})\n".format(
-                        i.user.first_name, i.user.id
-                    )
+            if not i.user.is_bot:
+                if i.status == "creator":
+                    creator += "👑 -> @{}\n\n".format(i.user.username) if i.user.username \
+                        else "👑 -> [{}](tg://user?id={})\n\n".format(
+                            i.user.first_name, i.user.id
+                        )
+                if i.status == "administrator":
+                    admins += " ⛑ -> @{}\n".format(i.user.username) if i.user.username \
+                        else " ⛑ -> [{}](tg://user?id={})\n".format(
+                            i.user.first_name, i.user.id
+                        )
         message.edit(f'Admin list:\n{creator}{admins}', parse_mode="Markdown", disable_web_page_preview=True)
 
 
